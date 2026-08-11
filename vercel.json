@@ -5,6 +5,10 @@
   "outputDirectory": "apps/web/dist",
   "rewrites": [
     {
+      "source": "/dummyjson/(.*)",
+      "destination": "https://dummyjson.com/$1"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
