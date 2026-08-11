@@ -19,7 +19,7 @@ export default function SiteHeader() {
     <header className="bg-white">
       <nav className="mx-auto flex w-[min(1240px,calc(100%-32px))] flex-wrap items-center gap-4 py-4 lg:min-h-[100px] lg:gap-6 lg:py-0">
         <NavLink
-          className="flex shrink-0 items-center gap-2 text-[28px] font-bold leading-none sm:text-[34px]"
+          className="flex shrink-0 items-center gap-2 text-[28px] font-bold leading-none sm:text-[34px] lg:flex-1"
           to="/"
           onClick={() => setIsMobileMenuOpen(false)}
         >
@@ -31,7 +31,7 @@ export default function SiteHeader() {
           Furniro
         </NavLink>
 
-        <div className="hidden items-center gap-[72px] text-base font-medium lg:flex">
+        <div className="hidden items-center gap-[72px] text-base font-medium lg:flex lg:flex-1 lg:justify-center">
           {navItems.map((item) => (
             <NavLink
               key={item.label}
@@ -46,7 +46,7 @@ export default function SiteHeader() {
           ))}
         </div>
 
-        <div className="ml-auto flex items-center gap-2 text-black sm:gap-4 lg:gap-6">
+        <div className="ml-auto flex items-center gap-2 text-black sm:gap-4 lg:ml-0 lg:flex-1 lg:justify-end lg:gap-6">
           <button
             className="grid h-10 w-10 place-items-center rounded border border-line lg:hidden"
             type="button"
