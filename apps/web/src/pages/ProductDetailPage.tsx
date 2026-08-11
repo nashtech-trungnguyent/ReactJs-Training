@@ -191,8 +191,8 @@ export function ProductDetailPage() {
 
   return (
     <>
-      <section className="bg-beige py-8">
-        <div className="mx-auto flex w-[min(1240px,calc(100%-32px))] flex-wrap items-center gap-6 text-muted">
+      <section className="bg-beige py-6 sm:py-8">
+        <div className="mx-auto flex w-[min(1240px,calc(100%-32px))] flex-wrap items-center gap-3 text-sm text-muted sm:gap-6 sm:text-base">
           {breadcrumbs.map((item, index) => (
             <div key={`${item.label}-${index}`} className="contents">
               {item.href ? (
@@ -203,7 +203,7 @@ export function ProductDetailPage() {
               {index < breadcrumbs.length - 1 ? <span>&gt;</span> : null}
             </div>
           ))}
-          <span className="h-9 w-px bg-muted"></span>
+          <span className="hidden h-9 w-px bg-muted sm:block"></span>
           <span className="text-black">{currentProductLabel}</span>
         </div>
       </section>
@@ -220,9 +220,9 @@ export function ProductDetailPage() {
       ) : null}
 
       <section className="py-9">
-        <div className="mx-auto grid w-[min(1240px,calc(100%-32px))] gap-20 lg:grid-cols-[553px_1fr]">
-          <div className="grid gap-8 sm:grid-cols-[76px_1fr]">
-            <div className="grid grid-cols-4 gap-8 sm:grid-cols-1">
+        <div className="mx-auto grid w-[min(1240px,calc(100%-32px))] gap-10 lg:grid-cols-[553px_1fr] lg:gap-20">
+          <div className="grid gap-6 sm:grid-cols-[76px_1fr] sm:gap-8">
+            <div className="grid grid-cols-4 gap-4 sm:grid-cols-1 sm:gap-8">
               {galleryThumbnails.map((thumbnail) => (
                 <img
                   key={thumbnail}
@@ -232,7 +232,7 @@ export function ProductDetailPage() {
                 />
               ))}
             </div>
-            <div className="grid min-h-[500px] place-items-center rounded-[10px] bg-beige p-8">
+            <div className="grid min-h-[320px] place-items-center rounded-[10px] bg-beige p-5 sm:min-h-[500px] sm:p-8">
               <img
                 className="max-h-[430px] w-full object-contain"
                 src={galleryActive}
@@ -242,12 +242,12 @@ export function ProductDetailPage() {
           </div>
 
           <div>
-            <h1 className="text-[42px] font-normal">{title}</h1>
+            <h1 className="text-[34px] font-normal sm:text-[42px]">{title}</h1>
             <p className="mt-2 text-2xl font-medium text-muted">{mainPrice}</p>
 
-            <div className="mt-4 flex items-center gap-5">
+            <div className="mt-4 flex flex-wrap items-center gap-3 sm:gap-5">
               <span className="text-xl text-[#ffc700]">{rating} / 5</span>
-              <span className="h-8 w-px bg-muted"></span>
+              <span className="hidden h-8 w-px bg-muted sm:block"></span>
               <span className="text-sm text-muted">{reviewLabel}</span>
             </div>
 
@@ -257,7 +257,7 @@ export function ProductDetailPage() {
 
             <div className="mt-6">
               <p className="mb-3 text-sm text-muted">Size</p>
-              <div className="flex gap-4">
+              <div className="flex flex-wrap gap-3 sm:gap-4">
                 {sizes.map((size) => (
                   <button
                     key={size.value}
@@ -271,7 +271,7 @@ export function ProductDetailPage() {
 
             <div className="mt-5">
               <p className="mb-3 text-sm text-muted">Color</p>
-              <div className="flex gap-4">
+              <div className="flex flex-wrap gap-3 sm:gap-4">
                 {colors.map((color) => (
                   <span
                     key={color.name}
@@ -283,7 +283,7 @@ export function ProductDetailPage() {
               </div>
             </div>
 
-            <div className="mt-8 flex flex-wrap gap-5 border-b border-line pb-14">
+            <div className="mt-8 flex flex-wrap gap-4 border-b border-line pb-10 sm:gap-5 sm:pb-14">
               <div className="flex h-16 items-center rounded-[10px] border border-muted">
                 <button
                   type="button"
@@ -315,7 +315,7 @@ export function ProductDetailPage() {
               </div>
 
               <Link
-                className="inline-flex h-16 items-center rounded-[15px] border border-black px-12 text-xl hover:bg-black hover:text-white"
+                className="inline-flex h-16 w-full items-center justify-center rounded-[15px] border border-black px-8 text-lg hover:bg-black hover:text-white sm:w-auto sm:px-12 sm:text-xl"
                 to="#"
                 onClick={(event) => {
                   event.preventDefault();
@@ -337,7 +337,7 @@ export function ProductDetailPage() {
               </Link>
 
               <Link
-                className="inline-flex h-16 items-center rounded-[15px] border border-black px-12 text-xl hover:bg-black hover:text-white"
+                className="inline-flex h-16 w-full items-center justify-center rounded-[15px] border border-black px-8 text-lg hover:bg-black hover:text-white sm:w-auto sm:px-12 sm:text-xl"
                 to="/shop"
               >
                 + {compareActionLabel}
@@ -356,7 +356,7 @@ export function ProductDetailPage() {
 
       <section className="border-y border-line py-12">
         <div className="mx-auto w-[min(1026px,calc(100%-32px))]">
-          <div className="mb-9 flex flex-wrap justify-center gap-14 text-2xl">
+          <div className="mb-9 flex flex-wrap justify-center gap-5 text-lg sm:gap-10 sm:text-2xl lg:gap-14">
             {tabs.map((tab) => (
               <button
                 key={tab.key}
@@ -374,7 +374,10 @@ export function ProductDetailPage() {
             ))}
           </div>
           {activeTab?.content.map((paragraph) => (
-            <p key={paragraph} className="mb-7 text-justify text-muted">
+            <p
+              key={paragraph}
+              className="mb-7 text-left text-muted sm:text-justify"
+            >
               {paragraph}
             </p>
           ))}
@@ -395,7 +398,7 @@ export function ProductDetailPage() {
 
       <section className="py-14">
         <div className="mx-auto w-[min(1236px,calc(100%-32px))]">
-          <h2 className="mb-7 text-center text-4xl font-medium">
+          <h2 className="mb-7 text-center text-[30px] font-medium sm:text-4xl">
             Related Products
           </h2>
 
@@ -429,7 +432,7 @@ export function ProductDetailPage() {
 
           <div className="mt-11 text-center">
             <Link
-              className="inline-flex border border-brand px-[74px] py-3 font-semibold text-brand hover:bg-brand hover:text-white"
+              className="inline-flex border border-brand px-10 py-3 font-semibold text-brand hover:bg-brand hover:text-white sm:px-[74px]"
               to="/shop"
             >
               Show More

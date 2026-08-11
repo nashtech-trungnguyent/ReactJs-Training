@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 export function AboutPage() {
   return (
     <>
-      <section className="relative grid min-h-[316px] place-items-center overflow-hidden">
+      <section className="relative grid min-h-[240px] place-items-center overflow-hidden sm:min-h-[316px]">
         <img
           className="absolute inset-0 h-full w-full object-cover"
           src="/images/home/home-20.png"
@@ -16,7 +16,7 @@ export function AboutPage() {
             src="/images/common/common-01.png"
             alt=""
           />
-          <h1 className="text-5xl font-medium">About</h1>
+          <h1 className="text-4xl font-medium sm:text-5xl">About</h1>
           <p className="mt-3 font-medium">
             <Link to="/">Home</Link> <span className="mx-1">&gt;</span>
             <span className="font-light">About</span>
@@ -24,10 +24,10 @@ export function AboutPage() {
         </div>
       </section>
 
-      <section className="py-20">
+      <section className="py-14 sm:py-20">
         <div className="mx-auto grid w-[min(1180px,calc(100%-32px))] items-center gap-12 lg:grid-cols-2">
           <img
-            className="h-[520px] w-full rounded-[10px] object-cover"
+            className="h-[340px] w-full rounded-[10px] object-cover sm:h-[520px]"
             src="/images/home/home-07.jpg"
             alt="Furniro showroom"
           />
@@ -35,7 +35,7 @@ export function AboutPage() {
             <p className="mb-3 font-semibold tracking-[3px] text-brand">
               Furniro Studio
             </p>
-            <h2 className="mb-6 text-[42px] font-bold leading-tight">
+            <h2 className="mb-6 text-[32px] font-bold leading-tight sm:text-[42px]">
               Designed around calm, useful rooms.
             </h2>
             <p className="mb-5 leading-8 text-muted">

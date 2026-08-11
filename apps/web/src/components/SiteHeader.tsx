@@ -15,13 +15,13 @@ export default function SiteHeader() {
 
   return (
     <header className="bg-white">
-      <nav className="mx-auto flex min-h-[100px] w-[min(1240px,calc(100%-32px))] items-center justify-between gap-6">
+      <nav className="mx-auto flex w-[min(1240px,calc(100%-32px))] flex-wrap items-center gap-4 py-4 lg:min-h-[100px] lg:gap-6 lg:py-0">
         <NavLink
-          className="flex shrink-0 items-center gap-2 text-[34px] font-bold leading-none"
+          className="flex shrink-0 items-center gap-2 text-[28px] font-bold leading-none sm:text-[34px]"
           to="/"
         >
           <img
-            className="h-9 w-9 object-contain"
+            className="h-8 w-8 object-contain sm:h-9 sm:w-9"
             src="/images/common/common-01.png"
             alt=""
           />
@@ -43,7 +43,7 @@ export default function SiteHeader() {
           ))}
         </div>
 
-        <div className="flex items-center gap-3 text-black sm:gap-6">
+        <div className="ml-auto flex items-center gap-2 text-black sm:gap-4 lg:gap-6">
           <button
             className="grid h-10 w-10 place-items-center hover:text-brand"
             type="button"
@@ -125,11 +125,26 @@ export default function SiteHeader() {
             </svg>
 
             {cartCount > 0 ? (
-              <span className="absolute -right-1 -top-1 grid min-h-5 min-w-5 place-items-center rounded-full bg-brand px-1 text-xs font-semibold text-white">
+              <span className="absolute right-0 top-0 grid min-h-5 min-w-5 -translate-y-1/4 translate-x-1/4 place-items-center rounded-full bg-brand px-1 text-xs font-semibold text-white">
                 {cartCount > 99 ? "99+" : cartCount}
               </span>
             ) : null}
           </NavLink>
+        </div>
+
+        <div className="order-3 flex w-full items-center justify-center gap-6 border-t border-line pt-4 text-sm font-medium lg:hidden">
+          {navItems.map((item) => (
+            <NavLink
+              key={item.label}
+              to={item.to}
+              className={({ isActive }) =>
+                isActive ? "text-brand hover:text-brand" : "hover:text-brand"
+              }
+              end={item.to === "/"}
+            >
+              {item.label}
+            </NavLink>
+          ))}
         </div>
       </nav>
     </header>

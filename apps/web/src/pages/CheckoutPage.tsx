@@ -169,7 +169,7 @@ export default function CheckoutPage() {
 
   return (
     <>
-      <section className="relative grid min-h-[316px] place-items-center overflow-hidden">
+      <section className="relative grid min-h-[240px] place-items-center overflow-hidden sm:min-h-[316px]">
         <img
           className="absolute inset-0 h-full w-full object-cover"
           src="/images/common/common-06.png"
@@ -182,7 +182,7 @@ export default function CheckoutPage() {
             src="/images/common/common-01.png"
             alt=""
           />
-          <h1 className="text-5xl font-medium">Checkout</h1>
+          <h1 className="text-4xl font-medium sm:text-5xl">Checkout</h1>
           <p className="mt-3 font-medium">
             <Link to="/">Home</Link> <span className="mx-1">&gt;</span>
             <span className="font-light">Checkout</span>
@@ -190,14 +190,16 @@ export default function CheckoutPage() {
         </div>
       </section>
 
-      <section className="py-16">
-        <div className="mx-auto grid w-[min(1240px,calc(100%-32px))] gap-20 lg:grid-cols-[1fr_0.86fr]">
+      <section className="py-12 sm:py-16">
+        <div className="mx-auto grid w-[min(1240px,calc(100%-32px))] gap-12 lg:grid-cols-[1fr_0.86fr] lg:gap-20">
           <form
             id="checkout-form"
             className="grid gap-9"
             onSubmit={handleSubmit(onSubmit)}
           >
-            <h2 className="mb-1 text-4xl font-semibold">Billing details</h2>
+            <h2 className="mb-1 text-[30px] font-semibold sm:text-4xl">
+              Billing details
+            </h2>
 
             <div className="grid gap-8 sm:grid-cols-2">
               <label className="grid gap-5 font-medium">
@@ -422,7 +424,7 @@ export default function CheckoutPage() {
               </p>
 
               <button
-                className="mx-auto mt-4 inline-flex rounded-[15px] border border-black px-[102px] py-4 text-xl hover:bg-black hover:text-white"
+                className="mx-auto mt-4 inline-flex w-full justify-center rounded-[15px] border border-black px-8 py-4 text-lg hover:bg-black hover:text-white sm:w-auto sm:px-[102px] sm:text-xl"
                 type="submit"
                 form="checkout-form"
                 disabled={!canPlaceOrder}

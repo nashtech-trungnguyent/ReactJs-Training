@@ -54,9 +54,29 @@ export default function ProductCard({
             </span>
           ) : null}
         </div>
+
+        <div className="mt-4 md:hidden">
+          {onAddToCart ? (
+            <button
+              type="button"
+              className="w-full bg-white px-6 py-3 font-semibold text-brand disabled:cursor-not-allowed disabled:opacity-70"
+              onClick={onAddToCart}
+              disabled={isAddingToCart}
+            >
+              {isAddingToCart ? "Adding..." : "Add to cart"}
+            </button>
+          ) : (
+            <Link
+              className="block w-full bg-white px-6 py-3 text-center font-semibold text-brand"
+              to="/cart"
+            >
+              Add to cart
+            </Link>
+          )}
+        </div>
       </div>
 
-      <div className="pointer-events-none absolute inset-0 hidden place-items-center bg-[#3a3a3a]/70 group-hover:grid">
+      <div className="pointer-events-none absolute inset-0 hidden place-items-center bg-[#3a3a3a]/70 md:group-hover:grid">
         <div className="pointer-events-auto grid justify-items-center gap-6">
           {onAddToCart ? (
             <button

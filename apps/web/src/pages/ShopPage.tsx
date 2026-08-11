@@ -66,7 +66,7 @@ export default function ShopPage() {
 
   return (
     <>
-      <section className="relative grid min-h-[316px] place-items-center overflow-hidden">
+      <section className="relative grid min-h-[240px] place-items-center overflow-hidden sm:min-h-[316px]">
         <img
           className="absolute inset-0 h-full w-full object-cover"
           src="/images/common/common-10.jpg"
@@ -79,7 +79,7 @@ export default function ShopPage() {
             src="/images/common/common-01.png"
             alt=""
           />
-          <h1 className="text-5xl font-medium">Shop</h1>
+          <h1 className="text-4xl font-medium sm:text-5xl">Shop</h1>
           <p className="mt-3 font-medium">
             <Link to="/">Home</Link> <span className="mx-1">&gt;</span>
             <span className="font-light">Shop</span>
@@ -127,7 +127,7 @@ export default function ShopPage() {
               Showing {showingFrom}-{showingTo} of {totalItems} results
             </span>
           </div>
-          <div className="flex flex-wrap items-center gap-7">
+          <div className="flex flex-col items-stretch gap-4 sm:flex-row sm:flex-wrap sm:items-center sm:gap-7">
             <label className="flex items-center gap-4">
               Show
               <select

@@ -148,7 +148,7 @@ export default function CartPage() {
 
   return (
     <>
-      <section className="relative grid min-h-[316px] place-items-center overflow-hidden">
+      <section className="relative grid min-h-[240px] place-items-center overflow-hidden sm:min-h-[316px]">
         <img
           className="absolute inset-0 h-full w-full object-cover"
           src="/images/common/common-06.png"
@@ -161,7 +161,7 @@ export default function CartPage() {
             src="/images/common/common-01.png"
             alt=""
           />
-          <h1 className="text-5xl font-medium">Cart</h1>
+          <h1 className="text-4xl font-medium sm:text-5xl">Cart</h1>
           <p className="mt-3 font-medium">
             <Link to="/">Home</Link> <span className="mx-1">&gt;</span>
             <span className="font-light">Cart</span>
@@ -169,7 +169,7 @@ export default function CartPage() {
         </div>
       </section>
 
-      <section className="py-16">
+      <section className="py-12 sm:py-16">
         <div className="mx-auto grid w-[min(1240px,calc(100%-32px))] gap-8 lg:grid-cols-[1fr_393px]">
           <div className="overflow-x-auto">
             <div className="mb-6 grid gap-4 rounded-[10px] border border-line p-4 md:grid-cols-[1fr_120px_auto]">
@@ -291,8 +291,8 @@ export default function CartPage() {
             </table>
           </div>
 
-          <aside className="bg-beige px-12 py-8">
-            <h2 className="mb-14 text-center text-[32px] font-semibold">
+          <aside className="bg-beige px-6 py-8 sm:px-8 lg:px-12">
+            <h2 className="mb-10 text-center text-[28px] font-semibold sm:mb-14 sm:text-[32px]">
               Cart Totals
             </h2>
             <div className="grid gap-8">
@@ -307,7 +307,7 @@ export default function CartPage() {
                 </span>
               </div>
               <Link
-                className={`mx-auto mt-4 inline-flex rounded-[15px] border px-14 py-3 text-xl ${
+                className={`mx-auto mt-4 inline-flex w-full justify-center rounded-[15px] border px-8 py-3 text-lg sm:w-auto sm:px-14 sm:text-xl ${
                   hasCartItems
                     ? "border-black hover:bg-black hover:text-white"
                     : "cursor-not-allowed border-muted text-muted"

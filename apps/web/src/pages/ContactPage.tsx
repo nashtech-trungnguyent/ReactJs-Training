@@ -70,7 +70,7 @@ export function ContactPage() {
 
   return (
     <>
-      <section className="relative grid min-h-[316px] place-items-center overflow-hidden">
+      <section className="relative grid min-h-[240px] place-items-center overflow-hidden sm:min-h-[316px]">
         <img
           className="absolute inset-0 h-full w-full object-cover"
           src="/images/common/common-09.png"
@@ -83,7 +83,7 @@ export function ContactPage() {
             src="/images/common/common-01.png"
             alt=""
           />
-          <h1 className="text-5xl font-medium">Contact</h1>
+          <h1 className="text-4xl font-medium sm:text-5xl">Contact</h1>
           <p className="mt-3 font-medium">
             <Link to="/">Home</Link> <span className="mx-1">&gt;</span>
             <span className="font-light">Contact</span>
@@ -91,10 +91,12 @@ export function ContactPage() {
         </div>
       </section>
 
-      <section className="py-24">
+      <section className="py-14 sm:py-24">
         <div className="mx-auto w-[min(1058px,calc(100%-32px))]">
           <div className="mx-auto mb-20 max-w-[644px] text-center">
-            <h2 className="text-4xl font-semibold">Get In Touch With Us</h2>
+            <h2 className="text-[30px] font-semibold sm:text-4xl">
+              Get In Touch With Us
+            </h2>
             <p className="mt-2 text-muted">
               For more information about our product and services, please feel
               free to drop us an email. Our staff will always be there to help
@@ -103,7 +105,7 @@ export function ContactPage() {
           </div>
 
           <div className="grid gap-14 lg:grid-cols-[393px_1fr]">
-            <aside className="grid content-start gap-10 px-8">
+            <aside className="grid content-start gap-10 px-0 sm:px-4 lg:px-8">
               <div>
                 <h3 className="text-2xl font-medium">Address</h3>
                 <p className="mt-2 max-w-[212px]">
@@ -219,7 +221,7 @@ export function ContactPage() {
 
               <button
                 disabled={isSubmitting}
-                className="h-[55px] w-[237px] rounded bg-brand text-white hover:bg-[#9d7626]"
+                className="h-[55px] w-full rounded bg-brand text-white hover:bg-[#9d7626] sm:w-[237px]"
                 type="submit"
               >
                 {isSubmitting ? "Sending..." : "Submit"}
