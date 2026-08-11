@@ -12,7 +12,8 @@ const navItems = [
 export default function SiteHeader() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { data: cartData } = useCart();
-  const cartCount = cartData?.items.length ?? 0;
+  const cartCount =
+    cartData?.items?.reduce((sum, item) => sum + item.quantity, 0) ?? 0;
 
   return (
     <header className="bg-white">
