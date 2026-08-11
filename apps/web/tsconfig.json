@@ -3,7 +3,9 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@react-workshop/http-client": ["../../packages/http-client/src/index.ts"],
+      "@react-workshop/http-client": [
+        "../../packages/http-client/src/index.ts"
+      ],
       "@react-workshop/ui/button": ["../../packages/ui/src/button/button.tsx"],
       "@react-workshop/ui/card": ["../../packages/ui/src/card/card.tsx"],
       "@react-workshop/ui/input": ["../../packages/ui/src/input/input.tsx"],

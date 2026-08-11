@@ -12,13 +12,16 @@
     "test": "vitest run --config vitest.config.ts"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@react-workshop/http-client": "workspace:*",
     "@react-workshop/ui": "workspace:*",
     "@tanstack/react-query": "catalog:",
     "axios": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:",
-    "react-hook-form": "catalog:"
+    "react-hook-form": "catalog:",
+    "react-router-dom": "^7.18.2",
+    "react-toastify": "^11.1.0"
   },
   "devDependencies": {
     "@react-workshop/eslint-config": "workspace:*",
@@ -28,6 +31,7 @@
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
     "@vitejs/plugin-react": "catalog:",
+    "@vitest/coverage-v8": "4.1.10",
     "eslint": "catalog:",
     "tailwindcss": "catalog:",
     "typescript": "catalog:",
