@@ -60,6 +60,10 @@ function parsePriceTextToNumber(priceText?: string): number {
   return Number.isFinite(numeric) ? numeric : 0;
 }
 
+function clampQuantity(value: number, min: number, max: number): number {
+  return Math.min(Math.max(value, min), max);
+}
+
 export function ProductDetailPage() {
   const { productKey } = useParams();
   const { addToCart, isAddingToCart } = useAddToCart();
@@ -89,13 +93,17 @@ export function ProductDetailPage() {
   const currentProductLabel =
     detail?.name ??
     (productKey ? `Asgaard sofa #${productKey}` : "Asgaard sofa");
-  const breadcrumbs = detail?.breadcrumb?.length
+  const rawBreadcrumbs = detail?.breadcrumb?.length
     ? detail.breadcrumb
     : [
         { label: "Home", href: "/" },
         { label: "Shop", href: "/shop" },
-        { label: currentProductLabel },
       ];
+  const breadcrumbs =
+    rawBreadcrumbs.at(-1)?.label.trim().toLowerCase() ===
+    currentProductLabel.trim().toLowerCase()
+      ? rawBreadcrumbs.slice(0, -1)
+      : rawBreadcrumbs;
   const title = detail?.name ?? "Asgaard sofa";
   const mainPrice =
     detail?.priceText ?? `Rp ${formatNumber(detail?.price ?? 25000000)}`;
@@ -135,7 +143,12 @@ export function ProductDetailPage() {
         { name: "Black", value: "#000000", selected: true },
         { name: "Gold", value: "#B88E2F" },
       ];
-  const quantity = detail?.quantity?.default ?? 1;
+  const minQuantity = detail?.quantity?.min ?? 1;
+  const maxQuantity = detail?.quantity?.max ?? 99;
+  const defaultQuantity = detail?.quantity?.default ?? 1;
+  const [quantity, setQuantity] = useState(
+    clampQuantity(defaultQuantity, minQuantity, maxQuantity),
+  );
   const primaryActionLabel = detail?.actions?.primary.label ?? "Add To Cart";
   const compareActionLabel =
     detail?.actions?.secondary?.[0]?.label ?? "Compare";
@@ -149,6 +162,10 @@ export function ProductDetailPage() {
   useEffect(() => {
     setSelectedTabKey(defaultActiveTabKey);
   }, [defaultActiveTabKey, detail?.id]);
+
+  useEffect(() => {
+    setQuantity(clampQuantity(defaultQuantity, minQuantity, maxQuantity));
+  }, [defaultQuantity, minQuantity, maxQuantity, detail?.id]);
 
   const activeTab =
     tabs.find((tab) => tab.key === selectedTabKey) ??
@@ -268,9 +285,33 @@ export function ProductDetailPage() {
 
             <div className="mt-8 flex flex-wrap gap-5 border-b border-line pb-14">
               <div className="flex h-16 items-center rounded-[10px] border border-muted">
-                <button className="px-4">-</button>
+                <button
+                  type="button"
+                  className="px-4 disabled:cursor-not-allowed disabled:opacity-50"
+                  onClick={() =>
+                    setQuantity((current) =>
+                      clampQuantity(current - 1, minQuantity, maxQuantity),
+                    )
+                  }
+                  disabled={quantity <= minQuantity}
+                  aria-label="Decrease quantity"
+                >
+                  -
+                </button>
                 <span className="px-5">{quantity}</span>
-                <button className="px-4">+</button>
+                <button
+                  type="button"
+                  className="px-4 disabled:cursor-not-allowed disabled:opacity-50"
+                  onClick={() =>
+                    setQuantity((current) =>
+                      clampQuantity(current + 1, minQuantity, maxQuantity),
+                    )
+                  }
+                  disabled={quantity >= maxQuantity}
+                  aria-label="Increase quantity"
+                >
+                  +
+                </button>
               </div>
 
               <Link
