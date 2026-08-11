@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useCart } from "../features/cart/hooks/useCart";
 
@@ -9,6 +10,7 @@ const navItems = [
 ];
 
 export default function SiteHeader() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { data: cartData } = useCart();
   const cartCount =
     cartData?.items?.reduce((sum, item) => sum + item.quantity, 0) ?? 0;
@@ -19,6 +21,7 @@ export default function SiteHeader() {
         <NavLink
           className="flex shrink-0 items-center gap-2 text-[28px] font-bold leading-none sm:text-[34px]"
           to="/"
+          onClick={() => setIsMobileMenuOpen(false)}
         >
           <img
             className="h-8 w-8 object-contain sm:h-9 sm:w-9"
@@ -45,7 +48,39 @@ export default function SiteHeader() {
 
         <div className="ml-auto flex items-center gap-2 text-black sm:gap-4 lg:gap-6">
           <button
-            className="grid h-10 w-10 place-items-center hover:text-brand"
+            className="grid h-10 w-10 place-items-center rounded border border-line lg:hidden"
+            type="button"
+            aria-label="Toggle navigation menu"
+            aria-expanded={isMobileMenuOpen}
+            onClick={() => setIsMobileMenuOpen((current) => !current)}
+          >
+            <svg
+              className="h-6 w-6"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              {isMobileMenuOpen ? (
+                <>
+                  <path d="M6 6l12 12" />
+                  <path d="M18 6 6 18" />
+                </>
+              ) : (
+                <>
+                  <path d="M4 7h16" />
+                  <path d="M4 12h16" />
+                  <path d="M4 17h16" />
+                </>
+              )}
+            </svg>
+          </button>
+
+          <button
+            className="hidden h-10 w-10 place-items-center hover:text-brand md:grid"
             type="button"
             aria-label="Account"
           >
@@ -65,7 +100,7 @@ export default function SiteHeader() {
           </button>
 
           <button
-            className="grid h-10 w-10 place-items-center hover:text-brand"
+            className="hidden h-10 w-10 place-items-center hover:text-brand md:grid"
             type="button"
             aria-label="Search"
           >
@@ -85,7 +120,7 @@ export default function SiteHeader() {
           </button>
 
           <button
-            className="grid h-10 w-10 place-items-center hover:text-brand"
+            className="hidden h-10 w-10 place-items-center hover:text-brand md:grid"
             type="button"
             aria-label="Wishlist"
           >
@@ -107,6 +142,7 @@ export default function SiteHeader() {
             className="relative grid h-10 w-10 place-items-center hover:text-brand"
             to="/cart"
             aria-label="Cart"
+            onClick={() => setIsMobileMenuOpen(false)}
           >
             <svg
               className="h-7 w-7"
@@ -132,15 +168,20 @@ export default function SiteHeader() {
           </NavLink>
         </div>
 
-        <div className="order-3 flex w-full items-center justify-center gap-6 border-t border-line pt-4 text-sm font-medium lg:hidden">
+        <div
+          className={`${isMobileMenuOpen ? "grid" : "hidden"} order-3 w-full gap-3 border-t border-line pt-4 text-sm font-medium lg:hidden`}
+        >
           {navItems.map((item) => (
             <NavLink
               key={item.label}
               to={item.to}
               className={({ isActive }) =>
-                isActive ? "text-brand hover:text-brand" : "hover:text-brand"
+                isActive
+                  ? "rounded-[10px] bg-beige px-4 py-3 text-brand hover:text-brand"
+                  : "rounded-[10px] px-4 py-3 hover:bg-beige hover:text-brand"
               }
               end={item.to === "/"}
+              onClick={() => setIsMobileMenuOpen(false)}
             >
               {item.label}
             </NavLink>
