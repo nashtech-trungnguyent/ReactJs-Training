@@ -78,19 +78,25 @@ describe("cartUtils", () => {
   it("updates quantity and subtotal for one item", () => {
     const cart = createCartFixture();
     const updated = updateItemQuantity(cart, "cart-1", 3);
+    const firstItem = updated.items[0];
+    const secondItem = updated.items[1];
 
-    expect(updated.items[0].quantity).toBe(3);
-    expect(updated.items[0].subtotal).toBe(75000000);
-    expect(updated.items[1]).toEqual(cart.items[1]);
+    expect(firstItem).toBeDefined();
+    expect(secondItem).toBeDefined();
+    expect(firstItem?.quantity).toBe(3);
+    expect(firstItem?.subtotal).toBe(75000000);
+    expect(secondItem).toEqual(cart.items[1]);
     expect(updated.subtotal).toBe(96400000);
   });
 
   it("removes item and recalculates totals", () => {
     const cart = createCartFixture();
     const updated = removeItemFromCart(cart, "cart-1");
+    const firstItem = updated.items[0];
 
     expect(updated.items).toHaveLength(1);
-    expect(updated.items[0].id).toBe("cart-2");
+    expect(firstItem).toBeDefined();
+    expect(firstItem?.id).toBe("cart-2");
     expect(updated.subtotal).toBe(21400000);
   });
 
@@ -104,9 +110,11 @@ describe("cartUtils", () => {
       price: 25200000,
       quantity: 1,
     });
+    const addedItem = updated.items[2];
 
     expect(updated.items).toHaveLength(3);
-    expect(updated.items[2].id).toBe("cart-local-8");
+    expect(addedItem).toBeDefined();
+    expect(addedItem?.id).toBe("cart-local-8");
     expect(updated.subtotal).toBe(71600000);
   });
 
@@ -120,9 +128,11 @@ describe("cartUtils", () => {
       price: 25000000,
       quantity: 2,
     });
+    const firstItem = updated.items[0];
 
     expect(updated.items).toHaveLength(2);
-    expect(updated.items[0].quantity).toBe(3);
-    expect(updated.items[0].subtotal).toBe(75000000);
+    expect(firstItem).toBeDefined();
+    expect(firstItem?.quantity).toBe(3);
+    expect(firstItem?.subtotal).toBe(75000000);
   });
 });

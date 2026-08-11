@@ -92,13 +92,15 @@ describe("useAddToCart", () => {
     const nextCart = queryClient.getQueryData(CART_QUERY_KEY) as {
       items: Array<{ quantity: number; subtotal: number }>;
     };
+    const firstItem = nextCart.items[0];
 
     expect(mocks.addItemMock).toHaveBeenCalledWith({
       productId: 1,
       quantity: 2,
     });
-    expect(nextCart.items[0].quantity).toBe(3);
-    expect(nextCart.items[0].subtotal).toBe(75000000);
+    expect(firstItem).toBeDefined();
+    expect(firstItem?.quantity).toBe(3);
+    expect(firstItem?.subtotal).toBe(75000000);
     expect(mocks.setPersistedCartMock).toHaveBeenCalled();
     expect(toast.success).toHaveBeenCalledWith("Item added to cart.");
   });
@@ -122,9 +124,11 @@ describe("useAddToCart", () => {
     const nextCart = queryClient.getQueryData(CART_QUERY_KEY) as {
       items: Array<{ productId: number }>;
     };
+    const firstItem = nextCart.items[0];
 
     expect(nextCart.items).toHaveLength(1);
-    expect(nextCart.items[0].productId).toBe(8);
+    expect(firstItem).toBeDefined();
+    expect(firstItem?.productId).toBe(8);
     expect(mocks.setPersistedCartMock).toHaveBeenCalled();
   });
 
