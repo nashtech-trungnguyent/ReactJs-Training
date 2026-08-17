@@ -65,7 +65,9 @@ export function ContactPage() {
       );
 
       reset();
-    } catch {}
+    } catch {
+      // error already handled by toast.promise
+    }
   };
 
   return (

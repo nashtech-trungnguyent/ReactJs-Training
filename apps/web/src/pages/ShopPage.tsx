@@ -16,7 +16,7 @@ export default function ShopPage() {
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(16);
 
-  const items = data?.items ?? [];
+  const items = useMemo(() => data?.items ?? [], [data?.items]);
   const total = data?.total ?? 0;
   const totalItems = Math.max(total, items.length);
   const totalPages = Math.max(1, Math.ceil(totalItems / pageSize));

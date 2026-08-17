@@ -6,3 +6,4 @@ storybook-static
 coverage
 *.local
 .DS_Store
+.vercel

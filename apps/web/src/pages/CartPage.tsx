@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { cartApi } from "../features/cart/api/cartApi";
 import { setPersistedCart } from "../features/cart/cartStorage";
 import {
-  addItemToCart,
   removeItemFromCart,
   updateItemQuantity,
 } from "../features/cart/cartUtils";
@@ -86,7 +85,9 @@ export default function CartPage() {
         quantity: addQuantity,
       });
       setAddQuantity(1);
-    } catch {}
+    } catch {
+      // error already handled by addToCart
+    }
   };
 
   const handleUpdateQuantity = async (
